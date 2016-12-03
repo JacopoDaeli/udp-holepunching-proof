@@ -24,7 +24,6 @@ def main():
         sys.exit(65)
 
     sockfd = socket.socket( socket.AF_INET, socket.SOCK_DGRAM )
-    print sockfd
     sockfd.sendto( pool, master )
     data, addr = sockfd.recvfrom( len(pool)+3 )
     if data != 'ok '+pool:
