@@ -30,7 +30,7 @@ def main():
         print >>sys.stderr, 'unable to request!'
         sys.exit(1)
     sockfd.sendto( 'ok', master )
-    print >>sys.stderr, 'request sent, waiting for parkner in pool "%s"...' % pool
+    print >>sys.stderr, 'request sent, waiting for another peer to join the pool "%s"...' % pool
     data, addr = sockfd.recvfrom( 6 )
 
     target = bytes2addr(data)

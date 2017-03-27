@@ -29,7 +29,7 @@ sockfd.on('message', (buf, rinfo) => {
         console.error(`error sending 'ok' to ${master.address}:${master.port}`)
         process.exit(1)
       } else {
-        console.log(`request sent, waiting for parkner in pool '${pool}'...`)
+        console.log(`request sent, waiting for another peer to join pool '${pool}'...`)
       }
     })
   } else if (msg !== `ok ${pool}` && !okPool) {
