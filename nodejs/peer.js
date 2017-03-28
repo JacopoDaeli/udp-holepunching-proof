@@ -42,7 +42,6 @@ sockfd.on('message', (buf, rinfo) => {
     process.stdin.on('data', (chunk) => {
       sockfd.send(chunk, target.port, target.address)
     })
-
   } else {
     console.log(`msg from peer ${rinfo.address}:${rinfo.port} - ${msg}`)
   }

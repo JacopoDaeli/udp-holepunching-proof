@@ -11,7 +11,7 @@ let poolqueue = {}
 
 sockfd.on('message', (buf, rinfo) => {
   const msg = buf.toString('utf8')
-  
+
   if (msg === 'ok') {
     const pool = connections[`${rinfo.address}:${rinfo.port}`]
     console.log(`request received for pool: ${pool}`)
@@ -22,12 +22,16 @@ sockfd.on('message', (buf, rinfo) => {
       sockfd.send(Buffer.from(JSON.stringify(a)), b.port, b.address, (err) => {
         if (err) {
           console.error(`error sending '${JSON.stringify(a)}' to ${b.address}:${b.port}`)
+        } else {
+          console.log(`ok sending '${JSON.stringify(a)}' to ${b.address}:${b.port}`)
         }
       })
 
       sockfd.send(Buffer.from(JSON.stringify(b)), a.port, a.address, (err) => {
         if (err) {
           console.error(`error sending '${JSON.stringify(b)}' to ${a.address}:${a.port}`)
+        } else {
+          console.error(`ok sending '${JSON.stringify(a)}' to ${b.address}:${b.port}`)
         }
       })
 
@@ -46,6 +50,7 @@ sockfd.on('message', (buf, rinfo) => {
       if (err) {
         console.error(`error sending 'ok ${pool}' to ${rinfo.address}:${rinfo.port}`)
       } else {
+        console.log(`ok sending 'ok ${pool}' to ${rinfo.address}:${rinfo.port}`)
         connections[`${rinfo.address}:${rinfo.port}`] = pool
       }
     })
