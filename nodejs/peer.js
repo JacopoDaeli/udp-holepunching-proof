@@ -7,7 +7,7 @@ if (!process.argv[2] || !process.argv[3] || !process.argv[4]) {
   process.exit(65)
 }
 
-const useSockf2 = !!process.argv[5]
+const useSockfd2 = !!process.argv[5]
 
 const master = {}
 master.address = process.argv[2]
@@ -16,7 +16,7 @@ master.port = Number.parseInt(process.argv[3])
 const pool = process.argv[4].replace(/ /g, '').replace(/\s/g, '')
 
 const sockfd = dgram.createSocket('udp4')
-const sockf2 = dgram.createSocket('udp4')
+const sockfd2 = dgram.createSocket('udp4')
 
 let okPool = false
 
@@ -43,7 +43,7 @@ sockfd.on('message', (buf, rinfo) => {
     console.log(`connected to ${target.address}:${target.port} (udp)`)
 
     process.stdin.on('data', (chunk) => {
-      if (useSockf2) {
+      if (useSockfd2) {
         sockfd2.send(chunk, target.port, target.address)
       } else {
         sockfd.send(chunk, target.port, target.address)
