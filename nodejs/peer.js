@@ -48,6 +48,7 @@ sockfd.on('message', (buf, rinfo) => {
     // HACK FOR SYMMETRIC NAT - ONLY WORKS IF ONE NAT IS SYMMETRIC AND ONE IS ASYMMETRIC
     if (rinfo.port !== target.port) {
       console.log('Symmetric NAT detected, updating target.port')
+      target.port = rinfo.port
     }
   }
 })
