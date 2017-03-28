@@ -44,7 +44,7 @@ sockfd.on('message', (buf, rinfo) => {
     })
 
   } else {
-    console.log(`msg from peer: ${msg}`)
+    console.log(`msg from peer ${rinfo.address}:${rinfo.port} - ${msg}`)
   }
 })
 
