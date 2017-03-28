@@ -31,7 +31,7 @@ sockfd.on('message', (buf, rinfo) => {
         if (err) {
           console.error(`error sending '${JSON.stringify(b)}' to ${a.address}:${a.port}`)
         } else {
-          console.error(`ok sending '${JSON.stringify(a)}' to ${b.address}:${b.port}`)
+          console.error(`ok sending '${JSON.stringify(a)}' to ${a.address}:${a.port}`)
         }
       })
 
